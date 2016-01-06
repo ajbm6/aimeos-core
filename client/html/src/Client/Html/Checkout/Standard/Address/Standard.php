@@ -307,7 +307,6 @@ error_log( 'count($addresses): ' . count( $addresses ) );
 		}
 		catch( \Exception $e )
 		{
-error_log( 'exception: ' . $e->getMessage()  . ' -  ' . $e->getTraceAsString() );
 			$this->getView()->standardStepActive = 'address';
 			throw $e;
 		}
