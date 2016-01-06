@@ -79,9 +79,8 @@ class Standard implements \Aimeos\MShop\Context\Item\Iface
 	 */
 	public function __toString()
 	{
-error_log( print_r( $this->locale, true ) );
 		if( isset( $this->locale ) ) {
-			return spl_object_hash( $this->locale );
+			return $this->locale->getId();
 		}
 
 		return '0';
