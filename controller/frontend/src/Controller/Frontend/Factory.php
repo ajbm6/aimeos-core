@@ -70,7 +70,7 @@ class Factory
 		$id = (string) $context;
 error_log( ' context id: ' . $context );
 
-		if( self::$cache === false || !isset( self::$controllers[$id][$path] ) )
+//		if( self::$cache === false || !isset( self::$controllers[$id][$path] ) )
 		{
 			$parts = explode( '/', $path );
 
