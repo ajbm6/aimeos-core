@@ -787,10 +787,10 @@ class Standard extends \Aimeos\MShop\Order\Manager\Base\Base
 		$language = $locale->getLanguageId();
 		$sitecode = $locale->getSite()->getCode();
 		$key = 'aimeos/basket/content-' . $sitecode . '-' . $language . '-' . $currency . '-' . strval( $type );
-echo ' basket key (get): ' . $key;
+error_log( ' basket key (get): ' . $key );
 
 		if( ( $serorder = $session->get( $key ) ) === null ) {
-echo ' new basket (get, not in session)';
+error_log( ' new basket (get, not in session)' );
 			return $this->createItem();
 		}
 
@@ -801,11 +801,11 @@ echo ' new basket (get, not in session)';
 			$msg = sprintf( 'Invalid serialized basket. "%1$s" returns "%2$s".', __METHOD__, $serorder );
 			$context->getLogger()->log( $msg, \Aimeos\MW\Logger\Base::WARN );
 
-echo ' new basket (get, unserialize error): ' . $key;
+error_log( ' new basket (get, unserialize error): ' . $key );
 			return $this->createItem();
 		}
 
-echo ' address cnt (get): ' . count( $order->getAddresses() );
+error_log( ' address cnt (get): ' . count( $order->getAddresses() ) );
 		\Aimeos\MShop\Factory::createManager( $context, 'plugin' )->register( $order, 'order' );
 
 		return $order;
@@ -852,8 +852,8 @@ echo ' address cnt (get): ' . count( $order->getAddresses() );
 		$sitecode = $locale->getSite()->getCode();
 		$key = 'aimeos/basket/content-' . $sitecode . '-' . $language . '-' . $currency . '-' . strval( $type );
 
-echo ' basket key (set): ' . $key;
-echo ' address cnt (set): ' . count( $order->getAddresses() );
+error_log( ' basket key (set): ' . $key );
+error_log( ' address cnt (set): ' . count( $order->getAddresses() ) );
 		$session->set( $key, serialize( clone $order ) );
 	}
 
