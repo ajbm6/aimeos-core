@@ -80,7 +80,7 @@ class Standard implements \Aimeos\MShop\Context\Item\Iface
 	public function __toString()
 	{
 		if( isset( $this->locale ) ) {
-			return $this->locale->getId();
+			return spl_object_hash( $this );
 		}
 
 		return '0';
