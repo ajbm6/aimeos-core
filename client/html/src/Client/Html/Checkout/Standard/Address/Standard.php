@@ -298,6 +298,7 @@ class Standard
 
 			// Test if addresses are available
 			$addresses = $basketCntl->get()->getAddresses();
+error_log( 'count($addresses): ' . count( $addresses ) );
 			if( !isset( $view->standardStepActive ) && count( $addresses ) === 0 )
 			{
 				$view->standardStepActive = 'address';
@@ -306,6 +307,7 @@ class Standard
 		}
 		catch( \Exception $e )
 		{
+error_log( 'exception: ' . $e->getMessage()  . ' -  ' . $e->getTraceAsString() );
 			$this->getView()->standardStepActive = 'address';
 			throw $e;
 		}

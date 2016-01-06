@@ -565,7 +565,9 @@ error_log( ' $default: ' . $default );
 error_log( ' $current: ' . $current );
 
 			$cpos = $cpos = array_search( $current, $steps );
-
+if( isset( $view->standardStepActive ) ) {
+	error_log( ' $view->standardStepActive: ' . $view->standardStepActive );
+}
 			if( !isset( $view->standardStepActive )
 				|| ( ( $apos = array_search( $view->standardStepActive, $steps ) ) !== false
 				&& $cpos !== false && $cpos < $apos )
