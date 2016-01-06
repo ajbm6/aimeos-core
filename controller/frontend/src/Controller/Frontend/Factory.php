@@ -68,6 +68,7 @@ class Factory
 		}
 
 		$id = (string) $context;
+error_log( ' context id: ' . $context );
 
 		if( self::$cache === false || !isset( self::$controllers[$id][$path] ) )
 		{

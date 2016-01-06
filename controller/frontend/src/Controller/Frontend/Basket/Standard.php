@@ -49,6 +49,7 @@ class Standard
 	 */
 	public function clear()
 	{
+error_log( __METHOD__ );
 		$this->basket = $this->domainManager->createItem();
 		$this->domainManager->setSession( $this->basket );
 	}
