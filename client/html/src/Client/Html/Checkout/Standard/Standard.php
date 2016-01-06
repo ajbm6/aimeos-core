@@ -549,16 +549,20 @@ class Standard
 			 */
 			$onepage = $view->config( 'client/html/checkout/standard/onepage', array() );
 			$onestep = array_shift( $onepage ); // keep the first one page step
+error_log( ' $onestep: ' . $onestep );
 
 			$steps = (array) $context->getConfig()->get( $this->subPartPath, $this->subPartNames );
 			$steps = array_diff( $steps, $onepage ); // remove all remaining steps in $onepage
+error_log( ' $steps: ' . print_r( $steps, true ) );
 
 			// use first step if default step isn't available
 			$default = ( !in_array( $default, $steps ) ? reset( $steps ) : $default );
+error_log( ' $default: ' . $default );
 
 			$current = $view->param( 'c_step', $default );
 			// use $onestep if current step isn't available due to one page layout
 			$current = ( !in_array( $current, $steps ) ? $onestep : $current );
+error_log( ' $current: ' . $current );
 
 			$cpos = $cpos = array_search( $current, $steps );
 
@@ -571,11 +575,13 @@ class Standard
 
 			$activeStep = $view->standardStepActive;
 			$view->standardSteps = $steps;
+error_log( ' $activeStep: ' . $activeStep );
 
 
 			$step = null;
 			do {
 				$lastStep = $step;
+error_log( ' $lastStep: ' . $lastStep );
 			}
 			while( ( $step = array_shift( $steps ) ) !== null && $step !== $activeStep );
 
@@ -586,12 +592,14 @@ class Standard
 			} else {
 				$view->standardUrlBack = $view->url( $bTarget, $bCntl, $bAction, array(), array(), $bConfig );
 			}
+error_log( ' standardUrlBack: ' . $view->standardUrlBack );
 
 			if( !isset( $view->standardUrlNext ) && ( $nextStep = array_shift( $steps ) ) !== null ) {
 				$param = array( 'c_step' => $nextStep );
 				$view->standardUrlNext = $view->url( $cTarget, $cCntl, $cAction, $param, array(), $cConfig );
 			}
 			// don't overwrite $view->standardUrlNext so order step URL is used
+error_log( ' standardUrlNext: ' . $view->standardUrlNext );
 
 
 			$this->cache = $view;
